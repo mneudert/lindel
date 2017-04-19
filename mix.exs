@@ -8,7 +8,15 @@ defmodule Lindel.Mixfile do
      deps:    deps(),
 
      build_embedded:  Mix.env == :prod,
-     start_permanent: Mix.env == :prod]
+     start_permanent: Mix.env == :prod,
+
+     preferred_cli_env: [
+       coveralls:          :test,
+       'coveralls.detail': :test,
+       'coveralls.travis': :test
+     ],
+
+     test_coverage: [ tool: ExCoveralls ]]
   end
 
   def application do
@@ -16,6 +24,8 @@ defmodule Lindel.Mixfile do
   end
 
   defp deps do
-    [{ :elastix, "~> 0.4" }]
+    [{ :excoveralls, "~> 0.6", only: :test },
+
+     { :elastix, "~> 0.4" }]
   end
 end
