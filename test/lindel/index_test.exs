@@ -9,4 +9,11 @@ defmodule Lindel.IndexTest do
     assert "test_name"       == Dummy.name
     assert "http://test.url" == Dummy.url
   end
+
+  test "wrapper modules defined" do
+    assert Dummy.Document.__info__(:module)
+    assert Dummy.Index.__info__(:module)
+    assert Dummy.Mapping.__info__(:module)
+    assert Dummy.Search.__info__(:module)
+  end
 end
