@@ -43,15 +43,34 @@ defmodule Lindel.Index do
       functions =
         elastix.__info__(:functions)
         |> Enum.reject(fn ({ name, _arity }) -> Enum.member?(blacklist, name) end)
-        |> Enum.map(fn ({ name, arity }) ->
-             args = Enum.map(1..arity, fn (i) -> { :"arg_#{i}", [], __MODULE__ } end)
+        |> Enum.map(fn
+             { _name, 0 } -> nil
+             { _name, 1 } -> nil
 
-             quote do
-               def unquote(name)(unquote_splicing(args)) do
-                 unquote(elastix).unquote(name)(unquote_splicing(args))
+             { name, 2 } ->
+               quote do
+                 def unquote(name)() do
+                   unquote(elastix).unquote(name)(
+                     unquote(index).url(),
+                     unquote(index).name()
+                   )
+                 end
                end
-             end
+
+             { name, arity } ->
+               args = Enum.map(1..(arity - 2), fn (i) -> Macro.var(:"arg_#{i}", __MODULE__) end)
+
+               quote do
+                 def unquote(name)(unquote_splicing(args)) do
+                   unquote(elastix).unquote(name)(
+                     unquote(index).url(),
+                     unquote(index).name(),
+                     unquote_splicing(args)
+                   )
+                 end
+               end
            end)
+        |> Enum.reject(&( &1 == nil ))
 
       quote do
         defmodule unquote(Module.concat(index, wrap)) do
