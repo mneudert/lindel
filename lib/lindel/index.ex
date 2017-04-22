@@ -3,15 +3,15 @@ defmodule Lindel.Index do
   Lindex Index Definition.
   """
 
-  defmacro __using__(opts) do
+  defmacro __using__(otp_app: otp_app) do
     quote do
       @behaviour unquote(__MODULE__)
 
-      @name unquote(opts[:name])
-      @url  unquote(opts[:url])
+      @otp_app unquote(otp_app)
 
-      def name, do: @name
-      def url,  do: @url
+      def config, do: Application.get_env(@otp_app, __MODULE__)
+      def name,   do: Keyword.get(config(), :name)
+      def url,    do: Keyword.get(config(), :url)
 
       # generate wrapped modules
       Module.eval_quoted __ENV__, unquote(__MODULE__).submodules(__MODULE__)

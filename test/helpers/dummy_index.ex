@@ -1,3 +1,3 @@
 defmodule Lindel.TestHelpers.DummyIndex do
-  use Lindel.Index, [ name: "test_name", url: "http://test.url" ]
+  use Lindel.Index, otp_app: :lindel
 end
