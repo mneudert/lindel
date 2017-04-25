@@ -50,15 +50,31 @@ config :my_otp_app, MyIndex,
   url:  "http://url.to.elasticsearch.host"
 ```
 
-If done properly you have the following wrappers defined for you:
+This creates a wrapper structure with the following namespace mappings:
 
-- `MyIndex.Document` == `Elastix.Document`
-- `MyIndex.Index` == `Elastix.Index`
-- `MyIndex.Mapping` == `Elastix.Mapping`
-- `MyIndex.Search` == `Elastix.Search`
+- `Elastix.Index` - `MyIndex`
+- `Elastix.Search` - `MyIndex`
+- `Elastix.Document` - `MyIndex.Document`
+- `Elastix.Mapping` - `MyIndex.Mapping`
 
-Most of methods of the original `:elastix` modules are provided while not
-requiring you to pass an index name or server url anymore.
+All functions asking for both server url and index name are provided without
+both parameters:
+
+```elixir
+# original functions
+Elastix.Index.exists?(elastic_url, index_name)
+Elastix.Search.search(elastic_url, index_name, types, data)
+
+Elastix.Document.index(elastic_url, index_name, type_name, id, data)
+Elastix.Mapping.put(elastic_url, index_name, type_name, data)
+
+# wrapped functions
+MyIndex.exists?()
+MyIndex.search(types, data)
+
+MyIndex.Document.index(type_name, id, data)
+MyIndex.Mapping.put(type_name, data)
+```
 
 
 ## License
