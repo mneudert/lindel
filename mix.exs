@@ -1,6 +1,8 @@
 defmodule Lindel.Mixfile do
   use Mix.Project
 
+  @url_github "https://github.com/mneudert/lindel"
+
   def project do
     [app:     :lindel,
      version: "0.1.0-dev",
@@ -17,6 +19,9 @@ defmodule Lindel.Mixfile do
        'coveralls.travis': :test
      ],
 
+     description:   "Elastix convenience wrapper thing",
+     docs:          docs(),
+     package:       package(),
      test_coverage: [ tool: ExCoveralls ]]
   end
 
@@ -25,11 +30,26 @@ defmodule Lindel.Mixfile do
   end
 
   defp deps do
-    [{ :excoveralls, "~> 0.6", only: :test },
+    [{ :ex_doc,      ">= 0.0.0", only: :dev },
+     { :excoveralls, "~> 0.6",   only: :test },
 
      { :elastix, "~> 0.4" }]
   end
 
+  defp docs do
+    [extras:     [ "CHANGELOG.md", "README.md" ],
+     main:       "readme",
+     source_ref: "master",
+     source_url: @url_github]
+  end
+
   defp elixirc_paths(:test), do: [ "lib", "test/helpers" ]
   defp elixirc_paths(_),     do: [ "lib" ]
+
+  defp package do
+    %{files:       [ "CHANGELOG.md", "mix.exs", "README.md", "lib" ],
+      licenses:    [ "WTFPL 2" ],
+      links:       %{ "GitHub" => @url_github },
+      maintainers: [ "Marc Neudert" ]}
+  end
 end
