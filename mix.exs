@@ -5,7 +5,7 @@ defmodule Lindel.Mixfile do
 
   def project do
     [app:     :lindel,
-     version: "0.1.0-dev",
+     version: "0.1.0",
      elixir:  "~> 1.4",
      deps:    deps(),
 
@@ -39,7 +39,7 @@ defmodule Lindel.Mixfile do
   defp docs do
     [extras:     [ "CHANGELOG.md", "README.md" ],
      main:       "readme",
-     source_ref: "master",
+     source_ref: "v0.1.0",
      source_url: @url_github]
   end
 
