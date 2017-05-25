@@ -47,7 +47,7 @@ defmodule Lindel.Mixfile do
   defp elixirc_paths(_),     do: [ "lib" ]
 
   defp package do
-    %{files:       [ "CHANGELOG.md", "mix.exs", "README.md", "lib" ],
+    %{files:       [ "CHANGELOG.md", "LICENSE", "mix.exs", "README.md", "lib" ],
       licenses:    [ "WTFPL 2" ],
       links:       %{ "GitHub" => @url_github },
       maintainers: [ "Marc Neudert" ]}
