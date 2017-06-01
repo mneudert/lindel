@@ -21,6 +21,11 @@ defmodule Lindel.Index do
 
 
   @doc """
+  Returns the index configuration.
+  """
+  @callback config() :: Keyword.t
+
+  @doc """
   Returns the index name.
   """
   @callback name() :: String.t
