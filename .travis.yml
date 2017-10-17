@@ -1,5 +1,7 @@
-language:    elixir
-elixir:      1.4.5
+language: elixir
+sudo:     false
+elixir:   1.4.5
+
 otp_release:
   - 18.3
   - 19.3
