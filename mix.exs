@@ -30,9 +30,9 @@ defmodule Lindel.Mixfile do
 
   defp deps do
     [
-      {:elastix, "~> 0.4"},
+      {:elastix, "~> 0.5"},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.7", only: :test}
     ]
   end
 
