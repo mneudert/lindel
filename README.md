@@ -16,16 +16,9 @@ Add Lindel as a dependency to your `mix.exs` file:
 
 ```elixir
 defp deps do
-  [{ :lindel, "~> 0.1" }]
-end
-```
-
-You should also update your applications to include all necessary projects:
-
-```elixir
-def application do
-  # :elastix is not started by :lindel itself!
-  [ applications: [ :elastix, :lindel ]]
+  [
+    {:lindel, "~> 0.1" }
+  ]
 end
 ```
 
