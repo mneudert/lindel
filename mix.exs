@@ -9,17 +9,15 @@ defmodule Lindel.Mixfile do
       version: "0.2.0-dev",
       elixir: "~> 1.4",
       deps: deps(),
+      description: "Elastix convenience wrapper thing",
+      docs: docs(),
       elixirc_paths: elixirc_paths(Mix.env()),
-      build_embedded: Mix.env() == :prod,
-      start_permanent: Mix.env() == :prod,
+      package: package(),
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.travis": :test
       ],
-      description: "Elastix convenience wrapper thing",
-      docs: docs(),
-      package: package(),
       test_coverage: [tool: ExCoveralls]
     ]
   end
