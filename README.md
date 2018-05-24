@@ -9,7 +9,6 @@ __Experimental stuff, may change unexpectedly!__
 Due to the nature of being a wrapper it may cease functioning with any random
 update of the `:elastix` module. So be sure to test whatever you are using...
 
-
 ## Setup
 
 Add Lindel as a dependency to your `mix.exs` file:
@@ -17,11 +16,12 @@ Add Lindel as a dependency to your `mix.exs` file:
 ```elixir
 defp deps do
   [
-    {:lindel, "~> 0.1" }
+    # ...
+    {:lindel, "~> 0.1"}
+    # ...
   ]
 end
 ```
-
 
 ## Usage
 
@@ -40,7 +40,7 @@ The configuration is done separately:
 ```elixir
 config :my_otp_app, MyIndex,
   name: "the_name_of_the_index"
-  url:  "http://url.to.elasticsearch.host"
+  url: "http://url.to.elasticsearch.host"
 ```
 
 This creates a wrapper structure with the following namespace mappings:
@@ -68,7 +68,6 @@ MyIndex.search(types, data)
 MyIndex.Document.index(type_name, id, data)
 MyIndex.Mapping.put(type_name, data)
 ```
-
 
 ## License
 
